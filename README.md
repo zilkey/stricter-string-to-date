@@ -1,6 +1,25 @@
-# Stricter::String::To::Date
+# StricterStringToDate
 
-TODO: Write a gem description
+ActiveSupport 4.0 changed `String#to_date` to raise a more descriptive error for invalid dates.
+
+It also makes date parsing more liberal than ActiveSupport 3.x.
+
+```ruby
+# ActiveSupport 3.x
+"asdf".to_date # => NoMethodError: undefined method `div' for nil:NilClass
+"333".to_date # => NoMethodError: undefined method `div' for nil:NilClass
+
+# ActiveSupport 4.x
+"asdf".to_date # => ArgumentError: invalid date
+"333".to_date # => Fri, 29 Nov 2013
+```
+
+This gem can help ease the transition.
+
+Install this gem if you rely on the old 3.x behavior
+and want to upgrade to ActiveSupport 4.x without dealing
+with it yet, or if you are on 3.x and want to see
+deprecation warnings about the changes that will come in 4.x.
 
 ## Installation
 
@@ -15,15 +34,3 @@ And then execute:
 Or install it yourself as:
 
     $ gem install stricter-string-to-date
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
